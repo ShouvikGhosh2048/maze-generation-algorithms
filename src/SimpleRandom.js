@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import WalledGrid from './WalledGrid';
 import VisualizationControls from './VisualizationControls';
 import { Link } from 'react-router-dom';
@@ -179,8 +179,33 @@ function generateSimpleRandomNextStep(step) {
 function SimpleRandomVisualization() {
   let [history, setHistory] = useState([]);
   let [currentStepIndex, setCurrentStepIndex] = useState(null);
-  
+  let [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if(playing) {
+      let timeoutId = setTimeout(() => {
+        if (currentStepIndex < history.length - 1) {
+          setCurrentStepIndex(currentStepIndex + 1);
+        }
+        else {
+          let nextStep = generateSimpleRandomNextStep(history[currentStepIndex]);
+          if (nextStep === null) {
+            setPlaying(false);
+            return;
+          }
+          setHistory([
+            ...history,
+            nextStep
+          ]);
+          setCurrentStepIndex(currentStepIndex + 1);
+        }
+      },100);
+      return () => {clearTimeout(timeoutId);};
+    }
+  });
+
   function onNew() {
+    setPlaying(false);
     setHistory([{
       stepType: 'initialGrid',
     }]);
@@ -188,12 +213,14 @@ function SimpleRandomVisualization() {
   }
 
   function onPrev() {
+    setPlaying(false);
     if (currentStepIndex > 0) {
       setCurrentStepIndex(currentStepIndex - 1);
     }
   }
 
   function onNext() {
+    setPlaying(false);
     if (currentStepIndex < history.length - 1) {
       setCurrentStepIndex(currentStepIndex + 1);
     }
@@ -208,6 +235,17 @@ function SimpleRandomVisualization() {
       ]);
       setCurrentStepIndex(currentStepIndex + 1);
     }
+  }
+
+  function onPlay() {
+    let currentStep = history[currentStepIndex];
+    if (currentStep.stepType !== 'mazeGenerated') {
+      setPlaying(true);
+    }
+  }
+
+  function onPause() {
+    setPlaying(false);
   }
 
   if(history.length === 0) {
@@ -486,7 +524,7 @@ function SimpleRandomVisualization() {
       </div>
       <WalledGrid wallMeetingPoints={wallMeetingPoints} horizontalWalls={horizontalWalls} verticalWalls={verticalWalls} squares={squares} />
       <p>{description}</p>
-      <VisualizationControls onPrev={onPrev} onNext={onNext} hidePrev={currentStep.stepType === 'initialGrid'} hideNext={currentStep.stepType === 'generatedEndPointsAndComponent'}/>
+      <VisualizationControls onPrev={onPrev} onNext={onNext} onPlay={onPlay} onPause={onPause} playing={playing} hidePrev={currentStep.stepType === 'initialGrid'} hideNext={currentStep.stepType === 'generatedEndPointsAndComponent'}/>
     </div>
   );
 }
