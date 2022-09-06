@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import VisualizationControls from './VisualizationControls';
+import { Link } from 'react-router-dom';
 
 function WalledGrid({ wallMeetingPoints, horizontalWalls, verticalWalls, squares }) {
     let divs = [];
@@ -372,6 +373,7 @@ function RandomDFSVisualization() {
 function RandomDFS() {
     return (
         <div className="p-5 min-w-min max-w-lg mx-auto">
+            <Link to="/" className="underline">Home</Link>
         <h1 className="font-bold text-lg">Random DFS</h1>
         <p className="mb-5">
             Consider a grid of squares. Initially, the squares will be surrounded with walls.

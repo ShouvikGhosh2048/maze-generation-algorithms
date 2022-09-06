@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/visualizations/simple-random" element={<SimpleRandom />} />
         <Route path="/visualizations/random-dfs" element={<RandomDFS />} />
         <Route path="/visualizations/automata" element={<Automata />} />

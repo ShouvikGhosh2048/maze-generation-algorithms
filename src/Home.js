@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom';
 
 function Home() {
     return (
-        <div>
-            <Link to="/visualizations/simple-random">Simple Random</Link>
-            <Link to="/visualizations/random-dfs">Random DFS</Link>
-            <Link to="/visualizations/automata">Automata</Link>
+        <div className="p-5">
+            <h1 className="font-bold text-lg">Maze Generation Algorithms</h1>
+            <ul>
+                <li><Link to="/visualizations/simple-random" className="underline">Simple Random</Link></li>
+                <li><Link to="/visualizations/random-dfs" className="underline">Random DFS</Link></li>
+                <li><Link to="/visualizations/automata" className="underline">Automata</Link></li>
+            </ul>
         </div>
     );
 }

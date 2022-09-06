@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import VisualizationControls from './VisualizationControls';
+import { Link } from 'react-router-dom';
 
 function Grid({ grid }) {
     let divs = [];
@@ -262,27 +263,28 @@ function AutomataVisualization() {
 
 function Automata() {
     return (
-        <div className="p-5 min-w-min max-w-lg mx-auto">
-        <h1 className="font-bold text-lg">Automata</h1>
-        <p className="mb-5">
-            We start with a empty grid of squares.
-        </p>
-        <p className="mb-5">
-            We fill each square with probability 0.2.
-        </p>
-        <p className="mb-5">
-            Then at each step, we evolve the grid. If in a current step a square is empty and it has exactly three non-empty neighbours (horizontal, vertical and diagonal), we fill this square. If a square is filled and it has 0 or more than 5 neighbours we empty this square.
-        </p>
-        <p className="mb-5">
-            We repeat this until the grid stops changing or we've performed 100 evolution steps.
-        </p>
-        <p className="mb-5">
-            The filled squares then become the empty space, and the empty squares become the walls.
-        </p>
-        <div className="flex justify-center">
-            <AutomataVisualization />
+        <div className="p-5 min-w-min max-w-lg mx-auto">    
+            <Link to="/" className="underline">Home</Link>
+            <h1 className="font-bold text-lg">Automata</h1>
+            <p className="mb-5">
+                We start with a empty grid of squares.
+            </p>
+            <p className="mb-5">
+                We fill each square with probability 0.2.
+            </p>
+            <p className="mb-5">
+                Then at each step, we evolve the grid. If in a current step a square is empty and it has exactly three non-empty neighbours (horizontal, vertical and diagonal), we fill this square. If a square is filled and it has 0 or more than 5 neighbours we empty this square.
+            </p>
+            <p className="mb-5">
+                We repeat this until the grid stops changing or we've performed 100 evolution steps.
+            </p>
+            <p className="mb-5">
+                The filled squares then become the empty space, and the empty squares become the walls.
+            </p>
+            <div className="flex justify-center">
+                <AutomataVisualization />
+            </div>
         </div>
-      </div>
     );
 }
 

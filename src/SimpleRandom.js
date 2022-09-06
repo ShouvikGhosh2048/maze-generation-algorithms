@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import WalledGrid from './WalledGrid';
 import VisualizationControls from './VisualizationControls';
+import { Link } from 'react-router-dom';
 
 //Use DFS to set componentLabels[x][y] = label for all (x,y) in the connected component of (i,j) in the grid.
 function labelComponent(componentLabels, grid, i, j, label) {
@@ -493,6 +494,7 @@ function SimpleRandomVisualization() {
 function SimpleRandom() {
   return (
     <div className="p-5 min-w-min max-w-lg mx-auto">
+      <Link to="/" className="underline">Home</Link>
       <h1 className="font-bold text-lg">Simple Random</h1>
       <p className="mb-5">
         Consider and m by n grid of squares. Each square has 4 sides which can be covered with walls.
