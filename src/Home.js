@@ -5,6 +5,7 @@ function Home() {
         <div>
             <Link to="/visualizations/simple-random">Simple Random</Link>
             <Link to="/visualizations/random-dfs">Random DFS</Link>
+            <Link to="/visualizations/automata">Automata</Link>
         </div>
     );
 }
