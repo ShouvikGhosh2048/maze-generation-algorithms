@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/maze-generation-algorithms/static/css/main.ca4d9062.css",
-    "main.js": "/maze-generation-algorithms/static/js/main.06f7bed5.js",
+    "main.js": "/maze-generation-algorithms/static/js/main.3ccbedec.js",
     "static/js/787.9790c20b.chunk.js": "/maze-generation-algorithms/static/js/787.9790c20b.chunk.js",
     "static/media/SimpleRandom.JPG": "/maze-generation-algorithms/static/media/SimpleRandom.b1b33a1fece2536dadeb.JPG",
-    "static/media/RandomDFS.JPG": "/maze-generation-algorithms/static/media/RandomDFS.8b945e971b15f5d37001.JPG",
     "static/media/Automata.JPG": "/maze-generation-algorithms/static/media/Automata.c70972439978bbadc12f.JPG",
+    "static/media/RandomDFS.JPG": "/maze-generation-algorithms/static/media/RandomDFS.a63e09fde3768c61669c.JPG",
     "index.html": "/maze-generation-algorithms/index.html",
     "main.ca4d9062.css.map": "/maze-generation-algorithms/static/css/main.ca4d9062.css.map",
-    "main.06f7bed5.js.map": "/maze-generation-algorithms/static/js/main.06f7bed5.js.map",
+    "main.3ccbedec.js.map": "/maze-generation-algorithms/static/js/main.3ccbedec.js.map",
     "787.9790c20b.chunk.js.map": "/maze-generation-algorithms/static/js/787.9790c20b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ca4d9062.css",
-    "static/js/main.06f7bed5.js"
+    "static/js/main.3ccbedec.js"
   ]
 }
