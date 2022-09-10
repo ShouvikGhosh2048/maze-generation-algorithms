@@ -77,7 +77,8 @@ function generateEndPointsAndComponent(grid) {
   return [start, end, component];
 }
 
-function generateSimpleRandomNextStep(step) {
+function generateSimpleRandomNextStep(history) {
+  let step = history[history.length - 1];
   switch(step.stepType) {
     case 'initialGrid': {
       // We will generate a new grid with walls on the edges, 
@@ -181,71 +182,12 @@ function SimpleRandomVisualization() {
   let [currentStepIndex, setCurrentStepIndex] = useState(null);
   let [playing, setPlaying] = useState(false);
 
-  useEffect(() => {
-    if(playing) {
-      let timeoutId = setTimeout(() => {
-        if (currentStepIndex < history.length - 1) {
-          setCurrentStepIndex(currentStepIndex + 1);
-        }
-        else {
-          let nextStep = generateSimpleRandomNextStep(history[currentStepIndex]);
-          if (nextStep === null) {
-            setPlaying(false);
-            return;
-          }
-          setHistory([
-            ...history,
-            nextStep
-          ]);
-          setCurrentStepIndex(currentStepIndex + 1);
-        }
-      },100);
-      return () => {clearTimeout(timeoutId);};
-    }
-  });
-
   function onNew() {
     setPlaying(false);
     setHistory([{
       stepType: 'initialGrid',
     }]);
     setCurrentStepIndex(0);
-  }
-
-  function onPrev() {
-    setPlaying(false);
-    if (currentStepIndex > 0) {
-      setCurrentStepIndex(currentStepIndex - 1);
-    }
-  }
-
-  function onNext() {
-    setPlaying(false);
-    if (currentStepIndex < history.length - 1) {
-      setCurrentStepIndex(currentStepIndex + 1);
-    }
-    else {
-      let nextStep = generateSimpleRandomNextStep(history[currentStepIndex]);
-      if (nextStep === null) {
-        return;
-      }
-      setHistory([
-        ...history,
-        nextStep
-      ]);
-      setCurrentStepIndex(currentStepIndex + 1);
-    }
-  }
-
-  function onPlay() {
-    let currentStep = history[currentStepIndex];
-    if (currentStep.stepType !== 'mazeGenerated') {
-      setPlaying(true);
-    }
-  }
-
-  function onPause() {
-    setPlaying(false);
   }
 
   if(history.length === 0) {
@@ -524,7 +466,7 @@ function SimpleRandomVisualization() {
       </div>
       <WalledGrid wallMeetingPoints={wallMeetingPoints} horizontalWalls={horizontalWalls} verticalWalls={verticalWalls} squares={squares} />
       <p>{description}</p>
-      <VisualizationControls onPrev={onPrev} onNext={onNext} onPlay={onPlay} onPause={onPause} playing={playing} hidePrev={currentStep.stepType === 'initialGrid'} hideNext={currentStep.stepType === 'generatedEndPointsAndComponent'}/>
+      <VisualizationControls history={history} setHistory={setHistory} currentStepIndex={currentStepIndex} setCurrentStepIndex={setCurrentStepIndex} generateNextStep={generateSimpleRandomNextStep} playing={playing} setPlaying={setPlaying} hidePrev={currentStep.stepType === 'initialGrid'} hideNext={currentStep.stepType === 'generatedEndPointsAndComponent'}/>
     </div>
   );
 }

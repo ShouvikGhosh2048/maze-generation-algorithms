@@ -167,71 +167,12 @@ function RandomDFSVisualization() {
     let [currentStepIndex, setCurrentStepIndex] = useState(null);
     let [playing, setPlaying] = useState(false);
 
-    useEffect(() => {
-        if(playing) {
-            let timeoutId = setTimeout(() => {
-                if (currentStepIndex < history.length - 1) {
-                    setCurrentStepIndex(currentStepIndex + 1);
-                }
-                else {
-                    let nextStep = generateRandomDFSNextStep(history);
-                    if (nextStep === null) {
-                        setPlaying(false);
-                        return;
-                    }
-                    setHistory([
-                        ...history,
-                        nextStep
-                    ]);
-                    setCurrentStepIndex(currentStepIndex + 1);
-                }
-            },100);
-            return () => {clearTimeout(timeoutId);};
-        }
-    });
-
     function onNew() {
         setPlaying(false);
         setHistory([{
             stepType: 'initialGrid',
         }]);
         setCurrentStepIndex(0);
-    }
-
-    function onPrev() {
-        setPlaying(false);
-        if (currentStepIndex > 0) {
-            setCurrentStepIndex(currentStepIndex - 1);
-        }
-    }
-
-    function onNext() {
-        setPlaying(false);
-        if (currentStepIndex < history.length - 1) {
-            setCurrentStepIndex(currentStepIndex + 1);
-        }
-        else {
-            let nextStep = generateRandomDFSNextStep(history);
-            if (nextStep === null) {
-                return;
-            }
-            setHistory([
-                ...history,
-                nextStep
-            ]);
-            setCurrentStepIndex(currentStepIndex + 1);
-        }
-    }
-
-    function onPlay() {
-        let currentStep = history[currentStepIndex];
-        if (currentStep.stepType !== 'mazeGenerated') {
-            setPlaying(true);
-        }
-    }
-
-    function onPause() {
-        setPlaying(false);
     }
 
     if(history.length === 0) {
@@ -365,7 +306,7 @@ function RandomDFSVisualization() {
             </div>
             <WalledGrid wallMeetingPoints={wallMeetingPoints} horizontalWalls={horizontalWalls} verticalWalls={verticalWalls} squares={squares} />
             <p>{description}</p>
-            <VisualizationControls onPrev={onPrev} onNext={onNext} onPlay={onPlay} onPause={onPause} playing={playing} hidePrev={currentStep.stepType === 'initialGrid'} hideNext={currentStep.stepType === 'mazeGenerated'} />
+            <VisualizationControls history={history} setHistory={setHistory} currentStepIndex={currentStepIndex} setCurrentStepIndex={setCurrentStepIndex} generateNextStep={generateRandomDFSNextStep} playing={playing} setPlaying={setPlaying} hidePrev={currentStep.stepType === 'initialGrid'} hideNext={currentStep.stepType === 'mazeGenerated'} />
         </div>
     );
 }
