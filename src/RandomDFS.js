@@ -2,6 +2,8 @@ import { useState } from 'react';
 import VisualizationControls from './VisualizationControls';
 import { Link } from 'react-router-dom';
 
+const SEARCH_COLOR = 'bg-blue-500';
+
 function Grid({ wallMeetingPoints, horizontalWalls, verticalWalls, squares }) {
     let divs = [];
     for(let i = 0; i < 21; i++) {
@@ -246,7 +248,7 @@ function RandomDFSVisualization() {
             break;
         }
         case 'choseStart': {
-            squares[currentStep.start[0]][currentStep.start[1]] = 'bg-red-500';
+            squares[currentStep.start[0]][currentStep.start[1]] = SEARCH_COLOR;
             break;
         }
         case 'expand':
@@ -254,23 +256,23 @@ function RandomDFSVisualization() {
         case 'mazeGenerated': {
             let currentSquare = history[1].start;
             let currentPath = [currentSquare];
-            squares[currentSquare[0]][currentSquare[1]] = 'bg-red-500';
+            squares[currentSquare[0]][currentSquare[1]] = SEARCH_COLOR;
             for(let i = 2; i <= currentStepIndex; i++) {
                 if (history[i].stepType === 'expand') {
                     let nextSquare = history[i].nextSquare;
                     if (nextSquare[0] === currentSquare[0] - 1) {
-                        horizontalWalls[currentSquare[0]][currentSquare[1]] = 'bg-red-500';
+                        horizontalWalls[currentSquare[0]][currentSquare[1]] = SEARCH_COLOR;
                     }
                     else if (nextSquare[0] === currentSquare[0] + 1) {
-                        horizontalWalls[currentSquare[0]+1][currentSquare[1]] = 'bg-red-500';
+                        horizontalWalls[currentSquare[0]+1][currentSquare[1]] = SEARCH_COLOR;
                     }
                     else if (nextSquare[1] === currentSquare[1] - 1) {
-                        verticalWalls[currentSquare[0]][currentSquare[1]] = 'bg-red-500';
+                        verticalWalls[currentSquare[0]][currentSquare[1]] = SEARCH_COLOR;
                     }
                     else if (nextSquare[1] === currentSquare[1] + 1) {
-                        verticalWalls[currentSquare[0]][currentSquare[1]+1] = 'bg-red-500';
+                        verticalWalls[currentSquare[0]][currentSquare[1]+1] = SEARCH_COLOR;
                     }
-                    squares[nextSquare[0]][nextSquare[1]] = 'bg-red-500';
+                    squares[nextSquare[0]][nextSquare[1]] = SEARCH_COLOR;
                     currentSquare = nextSquare;
                     currentPath.push(currentSquare);
                 }
