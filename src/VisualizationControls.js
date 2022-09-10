@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 function VisualizationControls({ history, setHistory, currentStepIndex, setCurrentStepIndex, generateNextStep, playing, setPlaying, hidePrev, hideNext }) {
   useEffect(() => {

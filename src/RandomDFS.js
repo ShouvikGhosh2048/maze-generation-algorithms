@@ -1,8 +1,8 @@
-import {useState, useEffect} from 'react';
+import { useState } from 'react';
 import VisualizationControls from './VisualizationControls';
 import { Link } from 'react-router-dom';
 
-function WalledGrid({ wallMeetingPoints, horizontalWalls, verticalWalls, squares }) {
+function Grid({ wallMeetingPoints, horizontalWalls, verticalWalls, squares }) {
     let divs = [];
     for(let i = 0; i < 21; i++) {
         for(let j = 0; j < 21; j++) {
@@ -304,7 +304,7 @@ function RandomDFSVisualization() {
             <div className="flex justify-end mb-2">
                 <button onClick={onNew} className="bg-sky-700 text-white px-2 py-1 rounded">Reset</button>
             </div>
-            <WalledGrid wallMeetingPoints={wallMeetingPoints} horizontalWalls={horizontalWalls} verticalWalls={verticalWalls} squares={squares} />
+            <Grid wallMeetingPoints={wallMeetingPoints} horizontalWalls={horizontalWalls} verticalWalls={verticalWalls} squares={squares} />
             <p>{description}</p>
             <VisualizationControls history={history} setHistory={setHistory} currentStepIndex={currentStepIndex} setCurrentStepIndex={setCurrentStepIndex} generateNextStep={generateRandomDFSNextStep} playing={playing} setPlaying={setPlaying} hidePrev={currentStep.stepType === 'initialGrid'} hideNext={currentStep.stepType === 'mazeGenerated'} />
         </div>

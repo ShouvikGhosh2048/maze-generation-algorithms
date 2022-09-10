@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState } from 'react';
 import VisualizationControls from './VisualizationControls';
 import { Link } from 'react-router-dom';
 

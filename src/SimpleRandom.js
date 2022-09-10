@@ -1,7 +1,36 @@
-import { useState, useEffect } from 'react';
-import WalledGrid from './WalledGrid';
+import { useState } from 'react';
 import VisualizationControls from './VisualizationControls';
 import { Link } from 'react-router-dom';
+
+function Grid({ wallMeetingPoints, horizontalWalls, verticalWalls, squares }) {
+  let divs = [];
+  for(let i = 0; i < 21; i++) {
+      for(let j = 0; j < 21; j++) {
+          if(i % 2 === 0) {
+              if(j % 2 === 0) {
+                  divs.push(<div key={21 * i + j} className={wallMeetingPoints[Math.floor(i/2)][Math.floor(j/2)]}></div>);
+              }
+              else {
+                  divs.push(<div key={21 * i + j} className={horizontalWalls[Math.floor(i/2)][Math.floor(j/2)]}></div>);
+              }
+          }
+          else {
+              if(j % 2 === 0) {
+                  divs.push(<div key={21 * i + j} className={verticalWalls[Math.floor(i/2)][Math.floor(j/2)]}></div>);
+              }
+              else {
+                  divs.push(<div key={21 * i + j} className={squares[Math.floor(i/2)][Math.floor(j/2)]}></div>);
+              }
+          }
+      }
+  }
+
+  return (
+      <div className="grid grid-cols-[repeat(10,_3px_25px)_3px] grid-rows-[repeat(10,_3px_25px)_3px] w-fit">
+          {divs}
+      </div>
+  );
+}
 
 //Use DFS to set componentLabels[x][y] = label for all (x,y) in the connected component of (i,j) in the grid.
 function labelComponent(componentLabels, grid, i, j, label) {
@@ -464,7 +493,7 @@ function SimpleRandomVisualization() {
       <div className="flex justify-end mb-2">
         <button onClick={onNew} className="bg-sky-700 text-white px-2 py-1 rounded">Reset</button>
       </div>
-      <WalledGrid wallMeetingPoints={wallMeetingPoints} horizontalWalls={horizontalWalls} verticalWalls={verticalWalls} squares={squares} />
+      <Grid wallMeetingPoints={wallMeetingPoints} horizontalWalls={horizontalWalls} verticalWalls={verticalWalls} squares={squares} />
       <p>{description}</p>
       <VisualizationControls history={history} setHistory={setHistory} currentStepIndex={currentStepIndex} setCurrentStepIndex={setCurrentStepIndex} generateNextStep={generateSimpleRandomNextStep} playing={playing} setPlaying={setPlaying} hidePrev={currentStep.stepType === 'initialGrid'} hideNext={currentStep.stepType === 'generatedEndPointsAndComponent'}/>
     </div>
