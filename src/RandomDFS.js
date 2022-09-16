@@ -328,7 +328,7 @@ function RandomDFS() {
             We then randomly choose a neighbour of the square (horizontal and vertical directions). We then remove the wall between the two squares.
         </p>
         <p className="mb-5">
-            We again consider the unvisited neighbours of this new square. We choose a random square among them and remove the wall between the two squares.
+            We now consider the unvisited neighbours of the new square. We choose a random square among them and remove the wall between the two squares.
         </p>
         <p className="mb-5">
             We keep repeating this until we land up at a square with no unvisited neighbours. We then backtrack the path from this square to our original square, checking at each point if the current square has unvisited neighbours. When reach a square which has unvisited neighbours, we repeat our expand and backtrack procedure until all squares are visited.

@@ -152,7 +152,6 @@ function AutomataVisualization() {
 
     let grid = [];
 
-    console.log(history);
     switch(currentStep.stepType) {
         case 'initialGrid': {
             for(let i = 0; i < 21; i++) {

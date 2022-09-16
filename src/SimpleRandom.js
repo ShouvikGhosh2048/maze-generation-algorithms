@@ -234,11 +234,11 @@ function SimpleRandomVisualization() {
       break;
     }
     case 'generatedWalls': {
-      description = 'We generate the walls, each wall having a probability 0.5 of occuring.';
+      description = 'We generate the inner walls, each wall having a probability 0.5 of occuring.';
       break;
     }
     case 'regeneratedWalls': {
-      description = "We regenerate the walls, as we didn't have any connected component of size greater than 1.";
+      description = "We regenerate the inner walls, as we didn't have any connected component of size greater than 1.";
       break;
     }
     case 'generatedEndPointsAndComponent': {
@@ -506,7 +506,7 @@ function SimpleRandom() {
       <Link to="/" className="underline">Home</Link>
       <h1 className="font-bold text-lg">Simple Random</h1>
       <p className="mb-5">
-        Consider and m by n grid of squares. Each square has 4 sides which can be covered with walls.
+        Consider a m by n grid of squares. Each square has 4 sides which can be covered with walls.
       </p>
       <p className="mb-5">
         All square sides lying on the boundary of the rectangle will have walls.  

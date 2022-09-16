@@ -10,7 +10,7 @@ function Home() {
             <div className="grid grid-cols-2 gap-2">
                 <Link to="/visualizations/simple-random" className="underline text-center w-fit">
                     <img src={simpleRandom} alt="Simple Random" width="150" height="150"/>
-                    SimpleRandom
+                    Simple Random
                 </Link>
                 <Link to="/visualizations/random-dfs" className="underline text-center w-fit">
                     <img src={randomDFS} alt="Random DFS" width="150" height="150"/>
