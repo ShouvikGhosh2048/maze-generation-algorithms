@@ -3,6 +3,7 @@ import Home from './Home';
 import SimpleRandom from './SimpleRandom';
 import RandomDFS from './RandomDFS';
 import Automata from './Automata';
+import RecursiveDivision from './RecursiveDivision';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/visualizations/simple-random" element={<SimpleRandom />} />
         <Route path="/visualizations/random-dfs" element={<RandomDFS />} />
         <Route path="/visualizations/automata" element={<Automata />} />
+        <Route path="/visualizations/recursive-division" element={<RecursiveDivision />} />
       </Routes>
     </div>
   );
