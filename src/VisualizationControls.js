@@ -19,7 +19,7 @@ function VisualizationControls({ history, setHistory, currentStepIndex, setCurre
           ]);
           setCurrentStepIndex(currentStepIndex + 1);
         }
-      },200);
+      },1000);
       return () => {clearTimeout(timeoutId);};
     }
   });
